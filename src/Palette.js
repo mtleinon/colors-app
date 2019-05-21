@@ -15,8 +15,8 @@ export default class Palette extends Component {
   changeLevel = level => {
     this.setState({ level });
   };
-  changeFormat = e => {
-    this.setState({ format: e.target.value });
+  changeFormat = format => {
+    this.setState({ format });
   };
   render() {
     const { colors } = this.props.palette;
