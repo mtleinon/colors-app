@@ -7,7 +7,7 @@ function App() {
   const palette = generatePalette(seedColors[0]);
   return (
     <div>
-      <Palette palette={seedColors[4]} />
+      <Palette palette={palette} />
     </div>
   );
 }

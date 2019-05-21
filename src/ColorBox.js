@@ -18,7 +18,7 @@ export default class ColorBox extends Component {
   };
 
   render() {
-    const { name, color } = this.props.color;
+    const { name, color } = this.props;
     const { copied } = this.state;
     return (
       <CopyToClipboard text={color} onCopy={this.changeCopyState}>

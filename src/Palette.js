@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
 import './Palette.css';
 import ColorBox from './ColorBox';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
 export default class Palette extends Component {
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  //   this.state = {
-  //     palette: ''
-  //   };
-  // }
-
+    this.state = {
+      level: 500
+    };
+  }
+  changeLevel = level => {
+    this.setState({ level });
+  };
   render() {
+    const { colors } = this.props.palette;
+    const { level } = this.state;
+    const colorBoxes = colors[level].map(color => (
+      <ColorBox color={color.hex} name={color.name} />
+    ));
     return (
       <div className="Palette">
+        <Slider
+          defaultValue={level}
+          min={100}
+          max={900}
+          step={100}
+          onAfterChange={this.changeLevel}
+        />
         {/* Navbar goes here */}
-        <div className="Palette-colors">
-          {this.props.palette.colors.map(color => (
-            <ColorBox color={color} />
-          ))}
-        </div>
+        <div className="Palette-colors">{colorBoxes}</div>
         {/* Footer here */}
       </div>
     );
