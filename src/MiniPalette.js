@@ -58,7 +58,10 @@ function MiniPalette(props) {
     />
   ));
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      onClick={() => props.setPaletteRoute(palette.id)}
+    >
       <div className={classes.colors}>{colorBoxes}</div>
       <h5 className={classes.title}>
         {palette.paletteName}

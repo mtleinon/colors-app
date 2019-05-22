@@ -32,8 +32,12 @@ const styles = {
   }
 };
 class PaletteList extends Component {
+  setPaletteRoute = paletteId => {
+    this.props.routeProps.history.push('/palette/' + paletteId);
+  };
   render() {
     const { palettes, classes } = this.props;
+
     return (
       <div className={classes.root}>
         <div className={classes.container}>
@@ -42,7 +46,10 @@ class PaletteList extends Component {
           </dir>
           <div className={classes.palettes}>
             {palettes.map((palette, i) => (
-              <MiniPalette palette={palette} />
+              <MiniPalette
+                palette={palette}
+                setPaletteRoute={this.setPaletteRoute}
+              />
             ))}
           </div>
         </div>
