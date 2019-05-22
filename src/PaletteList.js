@@ -6,11 +6,9 @@ export default class PaletteList extends Component {
   render() {
     return (
       <div>
-        <MiniPalette />
         {this.props.palettes.map((palette, i) => (
-          <p key={i}>
-            <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
-          </p>
+          <MiniPalette palette={palette} />
+          // <MiniPalette {...palette} />
         ))}
       </div>
     );
