@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import './PaletteList.css';
 
 export default class PaletteList extends Component {
   render() {
