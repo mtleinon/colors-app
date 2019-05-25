@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
-import { FormHelperText } from '@material-ui/core';
 
 const styles = {
   root: {
