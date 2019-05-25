@@ -47,6 +47,7 @@ class PaletteList extends Component {
           <div className={classes.palettes}>
             {palettes.map((palette, i) => (
               <MiniPalette
+                key={palette.id}
                 palette={palette}
                 setPaletteRoute={this.setPaletteRoute}
               />

@@ -53,6 +53,7 @@ function MiniPalette(props) {
 
   const colorBoxes = palette.colors.map(color => (
     <div
+      key={color.name}
       className={classes.miniColor}
       style={{ backgroundColor: color.color }}
     />
