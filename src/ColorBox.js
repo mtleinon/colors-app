@@ -20,15 +20,17 @@ const styles = {
     }
   },
   copyText: {
-    color: props => (chroma(props.color).luminance() > 0.5 ? 'black' : 'white')
+    color: props => (chroma(props.color).luminance() < 0.3 ? 'white' : 'black')
   },
   colorName: {
-    color: props => (chroma(props.color).luminance() < 0.08 ? 'white' : 'black')
+    color: props => (chroma(props.color).luminance() < 0.3 ? 'white' : 'black')
   },
   seeMore: {
-    color: props =>
-      chroma(props.color).luminance() < 0.08 ? 'white' : 'black',
-    background: 'rgba(255,255,255,.2)',
+    color: props => (chroma(props.color).luminance() < 0.3 ? 'white' : 'black'),
+    background: props =>
+      chroma(props.color).luminance() < 0.3
+        ? 'rgba(255,255,255,.2)'
+        : 'rgba(0,0,0,.1)',
     position: 'absolute',
     right: '0',
     bottom: '0',
@@ -39,8 +41,11 @@ const styles = {
     textTransform: 'uppercase'
   },
   copyButton: {
-    color: props =>
-      chroma(props.color).luminance() < 0.08 ? 'white' : 'black',
+    color: props => (chroma(props.color).luminance() < 0.3 ? 'white' : 'black'),
+    background: props =>
+      chroma(props.color).luminance() < 0.3
+        ? 'rgba(255,255,255,.2)'
+        : 'rgba(0,0,0,.1)',
     width: '100px',
     height: '30px',
     position: 'absolute',
@@ -51,7 +56,6 @@ const styles = {
     marginTop: '-15px',
     textAlign: 'center',
     outline: 'none',
-    background: 'rgba(255,255,255,.2)',
     fontSize: '1rem',
     lineHeight: '30px',
     textTransform: 'uppercase',
@@ -98,7 +102,14 @@ const styles = {
     fontSize: '4rem',
     transform: 'scale(.1)',
     opacity: '0',
-    color: 'white',
+    // color: 'white',
+    color: props =>
+      chroma(props.color).luminance() < 0.08 ? 'white' : 'black',
+    background: props =>
+      chroma(props.color).luminance() < 0.08
+        ? 'rgba(255,255,255,.2)'
+        : 'rgba(0,0,0,.1)',
+
     '& h1': {
       fontWeight: '400',
       textShadow: '1px 2px black',
