@@ -16,8 +16,17 @@ export default {
   nav: {
     display: 'flex',
     width: '100%',
+    marginBottom: '.5rem',
     justifyContent: 'space-between',
-    color: 'white'
+    alignItems: 'center',
+    color: 'white',
+
+    '& a': {
+      color: 'white',
+      padding: '.3rem .8rem',
+      textDecoration: 'none',
+      backgroundColor: 'rgba(255,255,255,.3)'
+    }
   },
   palettes: {
     boxSizing: 'border-box',

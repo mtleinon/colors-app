@@ -5,11 +5,17 @@ import seedColors from './seedColors';
 import PaletteList from './PaletteList';
 import generatePalette from './colorHelpers';
 import SingleColorPalette from './SingleColorPalette';
+import NewPaletteForm from './NewPaletteForm';
 
 function App() {
   const findPalette = id => seedColors.find(palette => palette.id === id);
   return (
     <Switch>
+      <Route
+        exact
+        path="/palette/new"
+        render={routeProps => <NewPaletteForm />}
+      />
       <Route
         exact
         path="/"
