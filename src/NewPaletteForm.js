@@ -11,8 +11,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { ChromePicker } from 'react-color';
+import Button from '@material-ui/core/Button';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = theme => ({
   root: {
@@ -126,7 +128,37 @@ class NewPaletteForm extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <Divider />
+          <Typography variant="h4">Design Your Palette</Typography>
+          <div>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ChromePicker
+            color="blue"
+            onChangeComplete={color => {
+              console.log(color);
+            }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            ADD COLOR
+          </Button>
+          {/* <Divider /> */}
         </Drawer>
         <main
           className={classNames(classes.content, {
@@ -134,16 +166,6 @@ class NewPaletteForm extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quia
-          aut excepturi dignissimos minima veniam dolorem dolor, illum
-          voluptatibus autem saepe ad mollitia minus voluptate ut numquam.
-          Dolore, autem magnam. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Nobis quia aut excepturi dignissimos minima veniam
-          dolorem dolor, illum voluptatibus autem saepe ad mollitia minus
-          voluptate ut numquam. Dolore, autem magnam. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Nobis quia aut excepturi dignissimos
-          minima veniam dolorem dolor, illum voluptatibus autem saepe ad
-          mollitia minus voluptate ut numquam. Dolore, autem magnam.
         </main>
       </div>
     );
