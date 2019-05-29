@@ -36,19 +36,18 @@ const styles = {
   }
 };
 
-const DraggableColorBox = SortableElement(
-  ({ classes, color, handleRemoveColor }) => {
-    return (
-      <div className={classes.root} style={{ backgroundColor: color.color }}>
-        <div className={classes.boxContent}>
-          <span>{color.name}</span>
-          <DeleteIcon
-            onClick={() => handleRemoveColor(color.name)}
-            className={classes.icon}
-          />
-        </div>
+function DraggableColorBox({ classes, color, handleRemoveColor }) {
+  const h2 = colorName => {
+    handleRemoveColor(colorName);
+  };
+
+  return (
+    <div className={classes.root} style={{ backgroundColor: color.color }}>
+      <div className={classes.boxContent}>
+        <span>{color.name}</span>
+        <DeleteIcon onClick={() => h2(color.name)} className={classes.icon} />
       </div>
-    );
-  }
-);
-export default withStyles(styles)(DraggableColorBox);
+    </div>
+  );
+}
+export default SortableElement(withStyles(styles)(DraggableColorBox));

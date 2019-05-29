@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm } from 'react-material-ui-form-validator';
+// import { ValidatorForm } from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
 import PaletteFormNav from './PaletteFormNav';
@@ -79,13 +79,18 @@ class NewPaletteForm extends React.Component {
   };
   constructor(props) {
     super(props);
+    console.log('NewPaletteForm');
 
     this.state = {
       open: false,
-      colors: props.palettes[0].colors
+      colors: [] //this.props.palettes[0].colors
     };
   }
+  componentDidMount() {
+    console.log('componentDidMount');
 
+    this.setState({ colors: this.props.palettes[0].colors });
+  }
   handleRemoveColor = colorName => {
     this.setState(state => ({
       colors: state.colors.filter(color => color.name !== colorName)
@@ -142,6 +147,7 @@ class NewPaletteForm extends React.Component {
     this.props.history.push('/');
   };
   render() {
+    console.log('render');
     const { classes, maxColors } = this.props;
     const { open, colors } = this.state;
     const paletteIsFull = colors.length >= maxColors;
