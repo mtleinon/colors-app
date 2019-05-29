@@ -25,7 +25,7 @@ class ColorBox extends Component {
       color,
       moreUrl,
       showLink,
-      showFullPalette,
+      // showFullPalette,
       classes
     } = this.props;
     const { copied } = this.state;
