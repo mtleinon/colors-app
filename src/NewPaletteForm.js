@@ -153,12 +153,12 @@ class NewPaletteForm extends React.Component {
     }));
   };
 
-  handleNewPaletteSubmit = newPaletteName => {
+  handleNewPaletteSubmit = newPaletteData => {
     const newPalette = {
-      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-      paletteName: newPaletteName,
+      id: newPaletteData.paletteName.toLowerCase().replace(/ /g, '-'),
+      paletteName: newPaletteData.paletteName,
       colors: this.state.colors,
-      emoji: 'TEST'
+      emoji: newPaletteData.emoji
     };
     this.props.savePalette(newPalette);
     this.props.history.push('/');

@@ -16,7 +16,8 @@ export default class PaletteMetaForm extends React.Component {
     super(props);
 
     this.state = {
-      newPaletteName: ''
+      newPaletteName: '',
+      stage: 'form'
       // open: true
     };
   }
@@ -31,10 +32,20 @@ export default class PaletteMetaForm extends React.Component {
     );
   }
 
+  showEmojiPicker = () => {
+    this.setState({ stage: 'emoji' });
+  };
+
   handlePaletteNameChange = e => {
     this.setState({ newPaletteName: e.target.value });
   };
 
+  savePalette = emoji => {
+    this.props.handleNewPaletteSubmit({
+      paletteName: this.state.newPaletteName,
+      emoji: emoji.native
+    });
+  };
   // handleClickOpen = () => {
   //   this.setState({ open: true });
   // };
@@ -44,48 +55,63 @@ export default class PaletteMetaForm extends React.Component {
   // };
 
   render() {
-    const { handleNewPaletteSubmit } = this.props;
+    const { stage } = this.state;
     return (
-      <Dialog
-        // open={this.state.open}
-        open={true}
-        onClose={this.props.hideSaveForm}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <Picker />
-        <ValidatorForm
-          onSubmit={() => handleNewPaletteSubmit(this.state.newPaletteName)}
-        >
+      <div>
+        <Dialog open={stage === 'emoji'} onClose={this.props.hideSaveForm}>
+          <DialogTitle id="form-dialog-title" margin="normal">
+            Select Emoji for the palette
+          </DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
-            </DialogContentText>
-            <TextValidator
-              label="Palette Name"
-              value={this.state.newPaletteName}
-              name="newPaletteName"
-              fullWidth
-              margin="normal"
-              onChange={this.handlePaletteNameChange}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'palette name must be given',
-                'palette name must be unique'
-              ]}
-            />
+            <Picker onSelect={this.savePalette} />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.props.hideSaveForm} color="primary">
               Cancel
             </Button>
-            <Button variant="contained" color="primary" type="submit">
-              Save palette
-            </Button>
           </DialogActions>
-        </ValidatorForm>
-      </Dialog>
+        </Dialog>
+        <Dialog
+          open={stage === 'form'}
+          // open={this.state.open}
+          onClose={this.props.hideSaveForm}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <ValidatorForm
+            onSubmit={this.showEmojiPicker}
+            // onSubmit={() => handleNewPaletteSubmit(this.state.newPaletteName)}
+          >
+            <DialogContent>
+              <DialogContentText>
+                To subscribe to this website, please enter your email address
+                here. We will send updates occasionally.
+              </DialogContentText>
+              <TextValidator
+                label="Palette Name"
+                value={this.state.newPaletteName}
+                name="newPaletteName"
+                fullWidth
+                margin="normal"
+                onChange={this.handlePaletteNameChange}
+                validators={['required', 'isPaletteNameUnique']}
+                errorMessages={[
+                  'palette name must be given',
+                  'palette name must be unique'
+                ]}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.props.hideSaveForm} color="primary">
+                Cancel
+              </Button>
+              <Button variant="contained" color="primary" type="submit">
+                Save palette
+              </Button>
+            </DialogActions>
+          </ValidatorForm>
+        </Dialog>
+      </div>
     );
   }
 }
