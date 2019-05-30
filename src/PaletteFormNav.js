@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+// import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { withStyles } from '@material-ui/core/styles';
 import PaletteMetaForm from './PaletteMetaForm';
 
@@ -24,6 +24,7 @@ const styles = theme => ({
     }),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     height: '64px'
   },
   appBarShift: {
@@ -39,7 +40,13 @@ const styles = theme => ({
     marginRight: 20
   },
   navButtons: {
-    display: 'flex'
+    marginRight: '1rem'
+  },
+  navButton: {
+    margin: '0 .5rem'
+  },
+  link: {
+    textDecoration: 'none'
   }
 });
 
@@ -47,10 +54,15 @@ class PaletteFormNav extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   newPaletteName: ''
-    // };
+    this.state = {
+      saveFormShowing: false
+    };
   }
+
+  showSaveForm = () => {
+    this.setState({ saveFormShowing: true });
+  };
+
   // componentDidMount() {
   //   ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
   //     this.props.palettes.every(({ paletteName }) => {
@@ -95,35 +107,31 @@ class PaletteFormNav extends React.Component {
             </Typography>
           </Toolbar>
           <div className={classes.navButtons}>
-            {/* <ValidatorForm
-              onSubmit={() => handleNewPaletteSubmit(this.state.newPaletteName)}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.showSaveForm}
+              className={classes.navButton}
             >
-              <TextValidator
-                label="Palette Name"
-                value={this.state.newPaletteName}
-                name="newPaletteName"
-                onChange={this.handlePaletteNameChange}
-                validators={['required', 'isPaletteNameUnique']}
-                errorMessages={[
-                  'palette name must be given',
-                  'palette name must be unique'
-                ]}
-              />
-              <Button variant="contained" color="primary" type="submit">
-                Save palette
-              </Button>
-            </ValidatorForm> */}
-            <PaletteMetaForm
-              handleNewPaletteSubmit={handleNewPaletteSubmit}
-              palettes={this.props.palettes}
-            />
-            <Link to="/">
-              <Button variant="contained" color="secondary">
+              Save
+            </Button>
+            <Link to="/" className={classes.link}>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.navButton}
+              >
                 Go Back
               </Button>
             </Link>
           </div>
         </AppBar>
+        {this.state.saveFormShowing && (
+          <PaletteMetaForm
+            handleNewPaletteSubmit={handleNewPaletteSubmit}
+            palettes={this.props.palettes}
+          />
+        )}
       </div>
     );
   }

@@ -216,7 +216,7 @@ class NewPaletteForm extends React.Component {
               </Button>
             </div>
             <ColorPickerForm
-              classes={classes}
+              // classes={classes}
               paletteIsFull={paletteIsFull}
               addNewColor={this.addNewColor}
               colors={colors}
