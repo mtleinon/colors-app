@@ -1,5 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { transform } from '@babel/core';
 
 const styles = {
   root: {
@@ -9,8 +11,10 @@ const styles = {
     padding: '0.5rem',
     position: 'relative',
     overflow: 'hidden',
-    '&:hover': {
-      cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover svg': {
+      opacity: 1,
+      transform: 'scale(1.3)'
     }
   },
   colors: {
@@ -43,6 +47,21 @@ const styles = {
     position: 'relative',
     margin: '0 auto',
     marginBottom: '-3.5px'
+  },
+  delete: {
+    width: '40px',
+    height: '40px',
+    padding: '10px',
+    position: 'absolute',
+    right: '0',
+    top: '0',
+    zIndex: 30,
+    color: 'white'
+  },
+
+  deleteIcon: {
+    backgroundColor: '#eb3d30',
+    opacity: 0
   }
 };
 
@@ -62,6 +81,12 @@ function MiniPalette(props) {
       className={classes.root}
       onClick={() => props.setPaletteRoute(palette.id)}
     >
+      <div className={classes.delete}>
+        <DeleteIcon
+          className={classes.deleteIcon}
+          style={{ transition: 'all 0.3s ease-in-out' }}
+        />
+      </div>
       <div className={classes.colors}>{colorBoxes}</div>
       <h5 className={classes.title}>
         {palette.paletteName}
