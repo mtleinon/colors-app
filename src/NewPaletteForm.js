@@ -13,6 +13,7 @@ import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+
 const drawerWidth = 400;
 
 const styles = theme => ({
