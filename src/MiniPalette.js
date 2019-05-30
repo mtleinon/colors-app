@@ -65,35 +65,43 @@ const styles = {
   }
 };
 
-function MiniPalette(props) {
-  console.log(props);
-  const { classes, palette } = props;
+class MiniPalette extends React.Component {
+  deletePalette = e => {
+    e.stopPropagation();
+    this.props.deletePalette(this.props.palette.id);
+  };
+  render() {
+    console.log(this.props);
+    const { classes, palette } = this.props;
 
-  const colorBoxes = palette.colors.map(color => (
-    <div
-      key={color.name}
-      className={classes.miniColor}
-      style={{ backgroundColor: color.color }}
-    />
-  ));
-  return (
-    <div
-      className={classes.root}
-      onClick={() => props.setPaletteRoute(palette.id)}
-    >
-      <div className={classes.delete}>
-        <DeleteIcon
-          className={classes.deleteIcon}
-          style={{ transition: 'all 0.3s ease-in-out' }}
-        />
+    const colorBoxes = palette.colors.map(color => (
+      <div
+        key={color.name}
+        className={classes.miniColor}
+        style={{ backgroundColor: color.color }}
+      />
+    ));
+
+    return (
+      <div
+        className={classes.root}
+        onClick={() => this.props.setPaletteRoute(palette.id)}
+      >
+        <div className={classes.delete}>
+          <DeleteIcon
+            onClick={this.deletePalette}
+            className={classes.deleteIcon}
+            style={{ transition: 'all 0.3s ease-in-out' }}
+          />
+        </div>
+        <div className={classes.colors}>{colorBoxes}</div>
+        <h5 className={classes.title}>
+          {palette.paletteName}
+          <span className={classes.emoji}>{palette.emoji}</span>
+        </h5>
       </div>
-      <div className={classes.colors}>{colorBoxes}</div>
-      <h5 className={classes.title}>
-        {palette.paletteName}
-        <span className={classes.emoji}>{palette.emoji}</span>
-      </h5>
-    </div>
-  );
+    );
+  }
 }
 
 export default withStyles(styles)(MiniPalette);

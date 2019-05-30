@@ -23,6 +23,7 @@ class PaletteList extends Component {
               <MiniPalette
                 key={palette.id}
                 palette={palette}
+                deletePalette={this.props.deletePalette}
                 setPaletteRoute={this.setPaletteRoute}
               />
             ))}

@@ -11,10 +11,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
-
-    this.state = {
-      palettes: savedPalettes || seedColors
-    };
+    let palettes = (this.state = {
+      palettes:
+        savedPalettes && savedPalettes.length > 0 ? savedPalettes : seedColors
+    });
   }
   saveToLocalStorage() {
     window.localStorage.setItem(
@@ -29,7 +29,15 @@ class App extends React.Component {
       this.saveToLocalStorage
     );
   };
-
+  deletePalette = paletteId => {
+    console.log(paletteId);
+    this.setState(
+      state => ({
+        palettes: state.palettes.filter(palette => palette.id !== paletteId)
+      }),
+      this.saveToLocalStorage
+    );
+  };
   findPalette = id => this.state.palettes.find(palette => palette.id === id);
 
   render() {
@@ -52,6 +60,7 @@ class App extends React.Component {
           render={routeProps => (
             <PaletteList
               palettes={this.state.palettes}
+              deletePalette={this.deletePalette}
               routeProps={routeProps}
             />
           )}
