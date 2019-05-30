@@ -10,15 +10,24 @@ import NewPaletteForm from './NewPaletteForm';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
 
     this.state = {
-      palettes: seedColors
+      palettes: savedPalettes || seedColors
     };
   }
-
+  saveToLocalStorage() {
+    window.localStorage.setItem(
+      'palettes',
+      JSON.stringify(this.state.palettes)
+    );
+  }
   savePalette = newPalette => {
     console.log(newPalette);
-    this.setState(state => ({ palettes: [...state.palettes, newPalette] }));
+    this.setState(
+      state => ({ palettes: [...state.palettes, newPalette] }),
+      this.saveToLocalStorage
+    );
   };
 
   findPalette = id => this.state.palettes.find(palette => palette.id === id);
