@@ -63,6 +63,10 @@ class PaletteFormNav extends React.Component {
     this.setState({ saveFormShowing: true });
   };
 
+  hideSaveForm = () => {
+    this.setState({ saveFormShowing: false });
+  };
+
   // componentDidMount() {
   //   ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
   //     this.props.palettes.every(({ paletteName }) => {
@@ -130,6 +134,7 @@ class PaletteFormNav extends React.Component {
           <PaletteMetaForm
             handleNewPaletteSubmit={handleNewPaletteSubmit}
             palettes={this.props.palettes}
+            hideSaveForm={this.hideSaveForm}
           />
         )}
       </div>

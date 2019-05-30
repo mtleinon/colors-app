@@ -8,13 +8,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
+import 'emoji-mart/css/emoji-mart.css';
+import { Picker } from 'emoji-mart';
+
 export default class PaletteMetaForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      newPaletteName: '',
-      open: true
+      newPaletteName: ''
+      // open: true
     };
   }
 
@@ -32,23 +35,25 @@ export default class PaletteMetaForm extends React.Component {
     this.setState({ newPaletteName: e.target.value });
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+  // handleClickOpen = () => {
+  //   this.setState({ open: true });
+  // };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  // handleClose = () => {
+  //   this.setState({ open: false });
+  // };
 
   render() {
     const { handleNewPaletteSubmit } = this.props;
     return (
       <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
+        // open={this.state.open}
+        open={true}
+        onClose={this.props.hideSaveForm}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <Picker />
         <ValidatorForm
           onSubmit={() => handleNewPaletteSubmit(this.state.newPaletteName)}
         >
@@ -72,7 +77,7 @@ export default class PaletteMetaForm extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.props.hideSaveForm} color="primary">
               Cancel
             </Button>
             <Button variant="contained" color="primary" type="submit">
