@@ -14,12 +14,9 @@ export default {
     '&:hover button': {
       opacity: '1'
     },
-    // [sizes.down('md')]: {
-    //   width: '50%'
-    // },
     [sizes.down('lg')]: {
       width: '25%',
-      height: props => (props.showFullPalette ? '20%' : '20%')
+      height: props => (props.showFullPalette ? '20%' : '33%')
     },
     [sizes.down('md')]: {
       width: '50%',
