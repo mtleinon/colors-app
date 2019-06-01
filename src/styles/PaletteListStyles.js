@@ -1,6 +1,15 @@
 import sizes from './sizes';
 import background from './listBackground.svg';
 export default {
+  '@global': {
+    '.fade-exit': {
+      opacity: 1
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transition: 'opacity 500ms ease-out'
+    }
+  },
   root: {
     backgroundColor: '#0804CC',
     backgroundImage: `url(${background})` /* background by SVGBackgrounds.com */,
