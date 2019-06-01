@@ -6,6 +6,7 @@ import { transform } from '@babel/core';
 const styles = {
   root: {
     backgroundColor: 'white',
+    boxShadow: '10px 10px 19px 5px rgba(0,0,0,0.75)',
     border: '1px solid black',
     borderRadius: '5px',
     padding: '0.5rem',
@@ -53,7 +54,7 @@ const styles = {
     height: '40px',
     padding: '10px',
     position: 'absolute',
-    right: '0',
+    right: '3px',
     top: '0',
     zIndex: 30,
     color: 'white'
@@ -61,6 +62,7 @@ const styles = {
 
   deleteIcon: {
     backgroundColor: '#eb3d30',
+    borderRadius: '3px',
     opacity: 0
   }
 };

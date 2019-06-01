@@ -1,7 +1,12 @@
 import sizes from './sizes';
+import background from './listBackground.svg';
 export default {
   root: {
-    backgroundColor: 'blue',
+    backgroundColor: '#0804CC',
+    backgroundImage: `url(${background})` /* background by SVGBackgrounds.com */,
+    // backgroundSize: '2000px 1100px',
+    // backgroundImage:
+    //   'linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet)',
     height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
@@ -9,6 +14,10 @@ export default {
     overflowY: 'scroll'
   },
   container: {
+    // backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    // padding: '.5rem',
+    // borderRadius: '1rem',
+    // marginTop: '1rem',
     width: '50%',
     display: 'flex',
     alignItems: 'flex-start',
@@ -47,13 +56,13 @@ export default {
     boxSizing: 'border-box',
     width: '100%',
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 30%)',
+    gridTemplateColumns: 'repeat(3, 1fr)',
     gridGap: '2rem',
     [sizes.down('sm')]: {
-      gridTemplateColumns: 'repeat(2, 47.5%)'
+      gridTemplateColumns: 'repeat(2, 1fr)'
     },
     [sizes.down('xs')]: {
-      gridTemplateColumns: 'repeat(1, 100%)'
+      gridTemplateColumns: 'repeat(1, 1fr)'
     }
   }
 };
