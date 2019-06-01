@@ -1,3 +1,4 @@
+import sizes from './sizes';
 export default {
   Navbar: {
     display: 'flex',
@@ -19,6 +20,13 @@ export default {
       textDecoration: 'none',
       color: 'black',
       alignSelf: 'center'
+    },
+    [sizes.down('xs')]: {
+      fontSize: '12px',
+      '& a::first-letter': {
+        fontSize: '200%',
+        textTransform: 'uppercase'
+      }
     }
   },
   level: {
@@ -45,6 +53,12 @@ export default {
       height: '13px',
       marginLeft: '-7px',
       marginTop: '-3px'
+    },
+    [sizes.down('md')]: {
+      width: '145px'
+    },
+    [sizes.down('xs')]: {
+      width: '50px'
     }
   },
   selectContainer: {

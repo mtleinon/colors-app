@@ -1,5 +1,6 @@
+// import sizes from './sizes';
 import { DRAWER_WIDTH } from '../constants';
-
+import sizes from './sizes';
 const drawerWidth = DRAWER_WIDTH;
 const styles = theme => ({
   root: {
@@ -27,14 +28,22 @@ const styles = theme => ({
     })
   },
   menuButton: {
-    marginLeft: 12,
-    marginRight: 20
+    margin: '0 20px 0 12px',
+    [sizes.down('xs')]: {
+      margin: '0 2px 0 2px'
+    }
   },
   navButtons: {
-    marginRight: '1rem'
+    marginRight: '1rem',
+    [sizes.down('xs')]: {
+      marginRight: '2px'
+    }
   },
   navButton: {
-    margin: '0 .5rem'
+    margin: '0 .5rem',
+    [sizes.down('xs')]: {
+      margin: '0 2px'
+    }
   },
   link: {
     textDecoration: 'none'
