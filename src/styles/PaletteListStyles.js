@@ -1,5 +1,8 @@
 import sizes from './sizes';
 import background from './listBackground.svg';
+import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
+
 export default {
   '@global': {
     '.fade-exit': {
@@ -73,5 +76,13 @@ export default {
     [sizes.down('xs')]: {
       gridTemplateColumns: 'repeat(1, 1fr)'
     }
+  },
+  avatarCancel: {
+    backgroundColor: red[100],
+    color: red[600]
+  },
+  avatarCheck: {
+    backgroundColor: blue[100],
+    color: blue[600]
   }
 };

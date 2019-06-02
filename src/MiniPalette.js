@@ -6,7 +6,7 @@ import { transform } from '@babel/core';
 const styles = {
   root: {
     backgroundColor: 'white',
-    boxShadow: '10px 10px 19px 5px rgba(0,0,0,0.75)',
+    boxShadow: '10px 10px 2px -1px rgba(0,0,0,0.32)',
     border: '1px solid black',
     borderRadius: '5px',
     padding: '0.5rem',
