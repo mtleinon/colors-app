@@ -67,13 +67,13 @@ const styles = {
   }
 };
 
-class MiniPalette extends React.Component {
+class MiniPalette extends React.PureComponent {
   deletePalette = e => {
     e.stopPropagation();
     this.props.deletePalette(this.props.palette.id);
   };
   render() {
-    console.log(this.props);
+    console.log('render', this.props.palette.id);
     const { classes, palette } = this.props;
 
     const colorBoxes = palette.colors.map(color => (
