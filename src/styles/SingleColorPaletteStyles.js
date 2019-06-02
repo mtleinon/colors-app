@@ -12,6 +12,7 @@ export default {
   backBox: {
     backgroundColor: 'black',
     width: '20%',
+    height: '50%',
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
