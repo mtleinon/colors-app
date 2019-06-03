@@ -8,11 +8,13 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
+import uuid from 'uuid';
 import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteFormStyles';
+import seedColors from './seedColors';
 
 class NewPaletteForm extends React.Component {
   static defaultProps = {
@@ -23,7 +25,7 @@ class NewPaletteForm extends React.Component {
 
     this.state = {
       open: false,
-      colors: this.props.palettes[0].colors
+      colors: seedColors[0].colors
     };
   }
 
@@ -52,12 +54,17 @@ class NewPaletteForm extends React.Component {
   handleAddRandomColor = () => {
     const allColors = this.props.palettes.map(palette => palette.colors).flat();
     let randomColor;
-    const colorIsInPalette = newColor => {
-      return this.state.colors.find(color => color.name === newColor.name);
-    };
-    do {
-      randomColor = allColors[Math.floor(Math.random() * allColors.length)];
-    } while (colorIsInPalette(randomColor));
+    if (allColors.length > 0) {
+      const colorIsInPalette = newColor => {
+        return this.state.colors.find(color => color.name === newColor.name);
+      };
+      do {
+        randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+      } while (colorIsInPalette(randomColor));
+    } else {
+      randomColor = { name: 'Grey_' + uuid(), color: '#aaa' };
+    }
+
     this.setState(({ colors }) => ({ colors: [...colors, randomColor] }));
   };
 

@@ -1,6 +1,7 @@
 import sizes from './sizes';
+import chroma from 'chroma-js';
 
-const styles = {
+export default {
   root: {
     width: '20%',
     height: '25%',
@@ -32,7 +33,10 @@ const styles = {
     left: '0',
     bottom: '0',
     padding: '10px',
-    color: 'rgba(0, 0, 0, 0.5)',
+    color: props =>
+      chroma(props.color.color).luminance() <= 0.08
+        ? 'rgba(255, 255, 255, 0.8)'
+        : 'rgba(0, 0, 0, 0.8)',
     letterSpacing: '1px',
     textTransform: 'uppercase',
     fontSize: '12px',
@@ -48,4 +52,3 @@ const styles = {
     transition: 'all 0.3s ease-in-out'
   }
 };
-export default styles;
