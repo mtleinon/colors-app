@@ -6,10 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import Button from '@material-ui/core/Button';
-// import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { withStyles } from '@material-ui/core/styles';
 import PaletteMetaForm from './PaletteMetaForm';
 import styles from './styles/PaletteFormNavStyles';
@@ -31,24 +29,13 @@ class PaletteFormNav extends React.Component {
     this.setState({ saveFormShowing: false });
   };
 
-  // componentDidMount() {
-  //   ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
-  //     this.props.palettes.every(({ paletteName }) => {
-  //       console.log(paletteName, value);
-
-  //       return paletteName.toLowerCase() !== value.toLowerCase();
-  //     })
-  //   );
-  // }
-  // handlePaletteNameChange = e => {
-  //   this.setState({ newPaletteName: e.target.value });
-  // };
   render() {
     const {
       open,
       handleNewPaletteSubmit,
       handleDrawerOpen,
-      classes
+      classes,
+      palettes
     } = this.props;
 
     return (
@@ -97,7 +84,7 @@ class PaletteFormNav extends React.Component {
         {this.state.saveFormShowing && (
           <PaletteMetaForm
             handleNewPaletteSubmit={handleNewPaletteSubmit}
-            palettes={this.props.palettes}
+            palettes={palettes}
             hideSaveForm={this.hideSaveForm}
           />
         )}

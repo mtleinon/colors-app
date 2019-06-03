@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
-import styles from './styles/ColorBoxStyles';
 import { withStyles } from '@material-ui/styles';
 import classNames from 'classnames';
+import styles from './styles/ColorBoxStyles';
 
 class ColorBox extends Component {
   constructor(props) {
@@ -21,14 +21,7 @@ class ColorBox extends Component {
   };
 
   render() {
-    const {
-      name,
-      color,
-      moreUrl,
-      showLink,
-      // showFullPalette,
-      classes
-    } = this.props;
+    const { name, color, moreUrl, showLink, classes } = this.props;
     const { copied } = this.state;
     return (
       <CopyToClipboard text={color} onCopy={this.changeCopyState}>

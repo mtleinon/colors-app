@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-// import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -18,15 +17,12 @@ export default class PaletteMetaForm extends React.Component {
     this.state = {
       newPaletteName: '',
       stage: 'form'
-      // open: true
     };
   }
 
   componentDidMount() {
     ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
       this.props.palettes.every(({ paletteName }) => {
-        console.log(paletteName, value);
-
         return paletteName.toLowerCase() !== value.toLowerCase();
       })
     );
@@ -46,19 +42,13 @@ export default class PaletteMetaForm extends React.Component {
       emoji: emoji.native
     });
   };
-  // handleClickOpen = () => {
-  //   this.setState({ open: true });
-  // };
-
-  // handleClose = () => {
-  //   this.setState({ open: false });
-  // };
 
   render() {
-    const { stage } = this.state;
+    const { stage, newPaletteName } = this.state;
+    const { hideSaveForm } = this.props;
     return (
       <div>
-        <Dialog open={stage === 'emoji'} onClose={this.props.hideSaveForm}>
+        <Dialog open={stage === 'emoji'} onClose={hideSaveForm}>
           <DialogTitle id="form-dialog-title" margin="normal">
             Select Emoji for the palette
           </DialogTitle>
@@ -66,22 +56,18 @@ export default class PaletteMetaForm extends React.Component {
             <Picker onSelect={this.savePalette} />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.props.hideSaveForm} color="primary">
+            <Button onClick={hideSaveForm} color="primary">
               Cancel
             </Button>
           </DialogActions>
         </Dialog>
         <Dialog
           open={stage === 'form'}
-          // open={this.state.open}
-          onClose={this.props.hideSaveForm}
+          onClose={hideSaveForm}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <ValidatorForm
-            onSubmit={this.showEmojiPicker}
-            // onSubmit={() => handleNewPaletteSubmit(this.state.newPaletteName)}
-          >
+          <ValidatorForm onSubmit={this.showEmojiPicker}>
             <DialogContent>
               <DialogContentText>
                 To subscribe to this website, please enter your email address
@@ -89,7 +75,7 @@ export default class PaletteMetaForm extends React.Component {
               </DialogContentText>
               <TextValidator
                 label="Palette Name"
-                value={this.state.newPaletteName}
+                value={newPaletteName}
                 name="newPaletteName"
                 fullWidth
                 margin="normal"
@@ -102,7 +88,7 @@ export default class PaletteMetaForm extends React.Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.props.hideSaveForm} color="primary">
+              <Button onClick={hideSaveForm} color="primary">
                 Cancel
               </Button>
               <Button variant="contained" color="primary" type="submit">

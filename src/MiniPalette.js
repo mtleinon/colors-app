@@ -18,8 +18,6 @@ const styles = {
     }
   },
   colors: {
-    // display: 'flex',
-    // flexWrap: 'wrap',
     backgroundColor: '#dae1e4',
     height: '150px',
     width: '100%',
@@ -72,8 +70,7 @@ class MiniPalette extends React.PureComponent {
     this.props.deletePalette(this.props.palette.id);
   };
   render() {
-    console.log('render', this.props.palette.id);
-    const { classes, palette } = this.props;
+    const { classes, palette, setPaletteRoute } = this.props;
 
     const colorBoxes = palette.colors.map(color => (
       <div
@@ -84,10 +81,7 @@ class MiniPalette extends React.PureComponent {
     ));
 
     return (
-      <div
-        className={classes.root}
-        onClick={() => this.props.setPaletteRoute(palette.id)}
-      >
+      <div className={classes.root} onClick={() => setPaletteRoute(palette.id)}>
         <div className={classes.delete}>
           <DeleteIcon
             onClick={this.deletePalette}

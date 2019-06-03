@@ -1,22 +1,22 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Palette from './Palette';
 import seedColors from './seedColors';
 import PaletteList from './PaletteList';
 import generatePalette from './colorHelpers';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from './Page';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
-    let palettes = (this.state = {
+    this.state = {
       palettes:
         savedPalettes && savedPalettes.length > 0 ? savedPalettes : seedColors
-    });
+    };
   }
   saveToLocalStorage() {
     window.localStorage.setItem(
@@ -25,14 +25,12 @@ class App extends React.Component {
     );
   }
   savePalette = newPalette => {
-    console.log(newPalette);
     this.setState(
       state => ({ palettes: [...state.palettes, newPalette] }),
       this.saveToLocalStorage
     );
   };
   deletePalette = paletteId => {
-    console.log(paletteId);
     this.setState(
       state => ({
         palettes: state.palettes.filter(palette => palette.id !== paletteId)
